@@ -26,12 +26,12 @@ M.default_config = {
     indent = {
         char = "▎",
         tab_char = nil,
-        highlight = "IblIndent",
+        highlight = "IGIndent",
         smart_indent_cap = true,
         priority = 1,
     },
     whitespace = {
-        highlight = "IblWhitespace",
+        highlight = "IGWhitespace",
         remove_blankline_trail = true,
     },
     scope = {

@@ -33,9 +33,9 @@ end
 local setup_builtin_hl_groups = function()
     local whitespace_hl = get "Whitespace"
     local line_nr_hl = get "LineNr"
-    local indentguide_indent_hl_name = "IndentGuideIndent"
-    local indentguide_whitespace_hl_name = "IndentGuideWhitespace"
-    local indentguide_scope_hl_name = "IndentGuideScope"
+    local indentguide_indent_hl_name = "IGIndent"
+    local indentguide_whitespace_hl_name = "IGWhitespace"
+    local indentguide_scope_hl_name = "IGScope"
 
     if not_set(get(indentguide_indent_hl_name)) then
         vim.api.nvim_set_hl(0, indentguide_indent_hl_name, whitespace_hl)
