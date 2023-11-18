@@ -3,13 +3,13 @@ local M = {}
 
 M.setup = function()
     local group = vim.api.nvim_create_augroup("IndentGuide", {})
-    local ibl = require "ibl"
+    local indentguide = require "indentguide"
     local buffer_leftcol = {}
 
     vim.api.nvim_create_autocmd("VimEnter", {
         group = group,
         pattern = "*",
-        callback = ibl.refresh_all,
+        callback = indentguide.refresh_all,
     })
     vim.api.nvim_create_autocmd({
         "CursorMoved",
@@ -23,14 +23,14 @@ M.setup = function()
         group = group,
         pattern = "*",
         callback = function(opts)
-            ibl.debounced_refresh(opts.buf)
+            indentguide.debounced_refresh(opts.buf)
         end,
     })
     vim.api.nvim_create_autocmd("OptionSet", {
         group = group,
         pattern = "list,listchars,shiftwidth,tabstop,vartabstop",
         callback = function(opts)
-            ibl.debounced_refresh(opts.buf)
+            indentguide.debounced_refresh(opts.buf)
         end,
     })
     vim.api.nvim_create_autocmd("WinScrolled", {
@@ -42,9 +42,9 @@ M.setup = function()
             if buffer_leftcol[opts.buf] ~= win_view.leftcol then
                 buffer_leftcol[opts.buf] = win_view.leftcol
                 -- Refresh immediately for horizontal scrolling
-                ibl.refresh(opts.buf)
+                indentguide.refresh(opts.buf)
             else
-                ibl.debounced_refresh(opts.buf)
+                indentguide.debounced_refresh(opts.buf)
             end
         end,
     })
@@ -53,7 +53,7 @@ M.setup = function()
         pattern = "*",
         callback = function()
             highlights.setup()
-            ibl.refresh_all()
+            indentguide.refresh_all()
         end,
     })
 end
